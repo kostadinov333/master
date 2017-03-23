@@ -3,6 +3,7 @@ package fExam;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
 
 
 public class DashboardPageObject {
-	
+	public static WebDriver driver;
 
 	public static boolean isAt() {
 
@@ -46,6 +47,14 @@ public class DashboardPageObject {
 		Catalog.click();
 		Products.click();
 	}
-
+	
+	
+	public static void mouseClickByLocator( String cssLocator ) {
+	     String locator = cssLocator;
+	     WebElement el = Browser.driver.findElement( By.cssSelector( locator ) );
+	     Actions builder = new Actions(driver);
+	     builder.moveToElement( el ).click( el );
+	     builder.perform();
+	}
 
 }
